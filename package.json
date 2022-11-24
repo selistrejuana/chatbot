@@ -1,0 +1,11 @@
+{
+  "name": "projeto-intregrador",
+  "version": "1.0.0",
+  "dependencies": {
+    "qrcode-terminal": "latest",
+    "whatsapp-web.js": "latest"
+  },
+  "scripts": {
+    "start": "node src/app.js"
+  }
+}
