@@ -66,9 +66,6 @@ const attStageUser = (user, message) => {
 
 const verifyTimeUsers = () => {
   users = users.filter((user) => user.lastMessage + 300000 >= Date.now());
-  console.log("--------------------------------------");
-  console.log(Date.now());
-  console.log(users);
 };
 
 const getUser = (userId) => {
