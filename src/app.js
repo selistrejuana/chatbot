@@ -103,58 +103,56 @@ setInterval(verifyTimeUsers, 2000);
 client.on("message", async (message) => {
   console.log(message);
 
-  if (message.from === "555180170688@c.us") {
-    setUser(message.from);
+  setUser(message.from);
 
-    if (!getUser(message.from)?.stageOne) {
-      client.sendMessage(message.from, MESSAGES.FIRST.MESSAGE);
-      client.sendMessage(message.from, MESSAGES.SECOND.MESSAGE);
-      await delay(2000);
-    }
+  if (!getUser(message.from)?.stageOne) {
+    client.sendMessage(message.from, MESSAGES.FIRST.MESSAGE);
+    client.sendMessage(message.from, MESSAGES.SECOND.MESSAGE);
+    await delay(2000);
+  }
 
-    attStageUser(getUser(message.from), message);
+  attStageUser(getUser(message.from), message);
 
-    if (
-      getUser(message.from)?.stageTwo &&
-      !getUser(message.from)?.stageThree &&
-      !getUser(message.from).blocked
-    ) {
-      client.sendMessage(
-        message.from,
-        MESSAGES["1"][getUser(message.from)?.stageTwo].MESSAGE
-      );
-      client.sendMessage(
-        message.from,
-        MESSAGES["1"][getUser(message.from)?.stageTwo].SECOND_MESSAGE
-      );
-    } else if (
-      getUser(message.from)?.stageThree &&
-      !getUser(message.from).blocked
-    ) {
-      client.sendMessage(
-        message.from,
-        MESSAGES["1"][getUser(message.from)?.stageTwo][
-          getUser(message.from)?.stageThree
-        ].MESSAGE
-      );
-      setBlocked(getUser(message.from));
-    } else if (
-      getUser(message.from)?.stageOne &&
-      !getUser(message.from)?.stageThree &&
-      !getUser(message.from).blocked
-    ) {
-      client.sendMessage(
-        message.from,
-        MESSAGES[getUser(message.from)?.stageOne].MESSAGE
-      );
-    }
+  if (
+    getUser(message.from)?.stageTwo &&
+    !getUser(message.from)?.stageThree &&
+    !getUser(message.from).blocked
+  ) {
+    client.sendMessage(
+      message.from,
+      MESSAGES["1"][getUser(message.from)?.stageTwo].MESSAGE
+    );
+    client.sendMessage(
+      message.from,
+      MESSAGES["1"][getUser(message.from)?.stageTwo].SECOND_MESSAGE
+    );
+  } else if (
+    getUser(message.from)?.stageThree &&
+    !getUser(message.from).blocked
+  ) {
+    client.sendMessage(
+      message.from,
+      MESSAGES["1"][getUser(message.from)?.stageTwo][
+        getUser(message.from)?.stageThree
+      ].MESSAGE
+    );
+    setBlocked(getUser(message.from));
+  } else if (
+    getUser(message.from)?.stageOne &&
+    !getUser(message.from)?.stageThree &&
+    !getUser(message.from).blocked
+  ) {
+    client.sendMessage(
+      message.from,
+      MESSAGES[getUser(message.from)?.stageOne].MESSAGE
+    );
+  }
 
-    if (
-      getUser(message.from).stageOne === 1 &&
-      (getUser(message.from).stageTwo === 3 ||
-        getUser(message.from).stageTwo === 4)
-    ) {
-      setBlocked(getUser(message.from));
-    }
+  if (
+    getUser(message.from).stageOne === 1 &&
+    (getUser(message.from).stageTwo === 3 ||
+      getUser(message.from).stageTwo === 4)
+  ) {
+    setBlocked(getUser(message.from));
   }
 });
