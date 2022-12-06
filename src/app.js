@@ -101,8 +101,6 @@ const setUser = (userId) => {
 setInterval(verifyTimeUsers, 2000);
 
 client.on("message", async (message) => {
-  console.log(message);
-
   setUser(message.from);
 
   if (!getUser(message.from)?.stageOne) {
